@@ -207,4 +207,4 @@ generateStars()
 
 }
 
-init(db,adminDev)
+init(db)
