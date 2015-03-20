@@ -1,0 +1,134 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*************************
+General Styles 
+**************************/
+
+html, body, p, ul , li, a, input, button {
+
+margin:0;
+padding:0;
+border:0;
+list-style:none;
+text-decoration:none;
+-webkit-font-smoothing: subpixel-antialiased;
+
+}
+
+
+html, body  {
+
+width:100%;
+height:100%;
+margin:0;
+padding:0;
+   
+}
+
+body {
+ 
+font-family:Arial, sans-serif;  
+color:#fff;
+background:#368269;
+
+
+}
+
+#score {
+
+position:absolute;
+top:5px;
+left:5px;
+font-size:30px;
+
+
+
+}
+
+#container {
+
+position:absolute;
+width:100%;
+top:100px;
+left:50%;
+margin-left:-50%;
+
+
+
+}
+
+#word {
+
+text-align:center;
+font-size:22px;
+padding:20px 0;
+background:rgba(0,0,0,0.2);
+
+}
+
+ul {
+
+margin-top:20px;
+
+}
+
+ul li {
+margin-top:2px;
+text-align:center;
+font-size:18px;
+padding:20px 0;
+background:rgba(0,0,0,0.1);
+cursor:pointer;
+
+}
+
+ul li:hover {
+
+background:rgba(0,0,0,0.3);
+
+}
+
+#stars {
+
+width:100%;
+position:absolute;
+left:50%;
+margin-left:-50%;
+text-align:center;
+top:40px;
+
+}
+
+.star {
+
+margin:auto;
+
+
+
+}
+
+#timer {
+
+width:100%;
+position:absolute;
+left:50%;
+margin-left:-50%;
+text-align:center;
+top:0;
+
+}
+
+#timerScale{
+
+width:100%;
+height:4px;
+
+background:rgba(0,255,0,0.4);
+
+
+}
+
+
+
+
