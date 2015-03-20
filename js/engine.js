@@ -1,7 +1,6 @@
 
 function init(database){
 
-
 // block iOS vertical scroll and bounce effect
 document.addEventListener('touchmove',function(e){
       
@@ -208,4 +207,4 @@ generateStars()
 
 }
 
-init(db)
+init(db,adminDev)
