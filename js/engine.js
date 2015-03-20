@@ -23,8 +23,8 @@ var db = database;
 var score = 0;
 var lifes = 6;
 var word;
-var languageA = "polish";
-var languageB = "english";
+var languageA = "pl";
+var languageB = "en";
 
 
 

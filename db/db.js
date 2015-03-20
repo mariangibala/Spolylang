@@ -2,40 +2,40 @@
 var db = [
 
     {
-        "polish": "numer kierunkowy",
-        "english": "code"
+        "pl": "numer kierunkowy",
+        "en": "code"
     },
     {
-        "polish": "telekonferencja",
-        "english": "conference call"
+        "pl": "telekonferencja",
+        "en": "conference call"
     },
     {
-        "polish": "połączenie",
-        "english": "connection"
+        "pl": "połączenie",
+        "en": "connection"
     },
     {
-        "polish": "poczta głosowa",
-        "english": "voice mail"
+        "pl": "poczta głosowa",
+        "en": "voice mail"
     },
     {
-        "polish": "biuro",
-        "english": "office"
+        "pl": "biuro",
+        "en": "office"
     },
     {
-        "polish": "korupcja",
-        "english": "corruption"
+        "pl": "korupcja",
+        "en": "corruption"
     },
     {
-        "polish": "faktura",
-        "english": "invoice"
+        "pl": "faktura",
+        "en": "invoice"
     },
     {
-        "polish": "podatek",
-        "english": "tax"
+        "pl": "podatek",
+        "en": "tax"
     },
     {
-        "polish": "firma",
-        "english": "company"
+        "pl": "firma",
+        "en": "company"
     }
 
 ]
