@@ -13,7 +13,7 @@ document.addEventListener('touchmove',function(e){
 //-----------------------------------------------------
 
 var db = database;
-
+console.log(db.length + " words in the database")
 
 // ----------------------------------------------------
 // Define global variables //
