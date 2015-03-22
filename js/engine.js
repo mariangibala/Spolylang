@@ -1,5 +1,5 @@
 
-function init(database){
+function init(){
 
 // block iOS vertical scroll and bounce effect
 document.addEventListener('touchmove',function(e){
@@ -12,8 +12,13 @@ document.addEventListener('touchmove',function(e){
 // Import database //
 //-----------------------------------------------------
 
-var db = database;
+db = db.words;
+
 console.log(db.length + " words in the database")
+
+// ----------------------------------------------------
+// Import modules //
+//-----------------------------------------------------
 
 // ----------------------------------------------------
 // Define global variables //
@@ -26,42 +31,6 @@ var languageA = "pl";
 var languageB = "en";
 
 
-
-
-
-// ----------------------------------------------------
-// Helper functions //
-//-----------------------------------------------------
-
-
-var getRandomBetween = function(a, b) {
-   
-    return Math.floor(Math.random() * ( b - a + 1)) + a;
-
-};
-
-
-// randomize function Fisher–Yates algorithm
-var shuffle = function(array) {
-    
-    var m = array.length, t, i;
-    
-    // While there remain elements to shuffle…
-    while (m) {
-    
-        // Pick a remaining element…
-        i = Math.floor(Math.random() * m--);
-      
-        // And swap it with the current element.
-        t = array[m];
-        array[m] = array[i];
-        array[i] = t;
-    
-    }
-    
-    return array;
-};
-
 // ----------------------------------------------------
 // generate stars //
 //-----------------------------------------------------
@@ -70,7 +39,7 @@ var generateStars = function(){
 
     for (var x=0; x<=lifes; x++) {
     
-        var star = '<img src="img/star.png" class="star">';
+        var star = '<img src="img/star@2x.png" width="30px" height="30px" class="star">';
         $("#stars").append(star)
     
     
@@ -89,7 +58,7 @@ var removeLife = function(){
 
 
 // ----------------------------------------------------
-// Helper functions //
+// Generate question//
 //-----------------------------------------------------
 
 
@@ -99,7 +68,7 @@ var generateQuestion = function(){
     
     // select random word to show
     // later change random to statistical choice
-    var randomNumber = getRandomBetween(0, lastWord)
+    var randomNumber = basic.getRandomBetween(0, lastWord)
     word = db[randomNumber]
     
     // grab correct answer
@@ -111,7 +80,7 @@ var generateQuestion = function(){
     
     while ( x > 0 ) {
    
-        var incorrectWord = db[getRandomBetween(0, lastWord)][languageB]
+        var incorrectWord = db[basic.getRandomBetween(0, lastWord)][languageB]
         
         if (answers.indexOf(incorrectWord) == -1) {
         
@@ -123,7 +92,7 @@ var generateQuestion = function(){
     }
     
     
-    answers = shuffle(answers)
+    answers = basic.shuffle(answers)
    
     
 
@@ -141,7 +110,9 @@ var generateQuestion = function(){
 
 
 
-var showCorrect = function() {
+var showAnswer = function() {
+    
+   timer.stop()
     
     $("ul li").each(function(index,element){
         
@@ -157,17 +128,19 @@ var showCorrect = function() {
 };
 
 
-
-var nextWord = function(){
+// pass delay time as attribute so you can use diferent feedback time for wrong and correct answer
+var nextWord = function(delayTime){
 
 
     $("#score").html(score);
 
-    $("#container").delay(0).fadeOut(300,function(){
+    $("#container").delay(delayTime).fadeOut(300,function(){
      
      
           generateQuestion()
+          timer.start()
           $("#container").fadeIn(300)
+          interactionsActive = true;
      
     });
    
@@ -175,36 +148,59 @@ var nextWord = function(){
 };
 
 
-$("#container").on("click touchend","li",function(e){
+$("#container").on("click touchend","li", function(e){
 
     e.preventDefault()
+    
+    
+    // we have to block interactions to avoid doubleclicks etc.
+    if (interactionsActive === false) return;
+    
+    interactionsActive = false;
+    
+    $(this).css("background","rgba(0,0,0,0.3)")
 
     if (word[languageB] === $(this).text()) {
         
         
-        score++
+        $("body").trigger("correctAnswer")
        
         
     } else {
     
-        
-        removeLife();
-        score--
+
+        $("body").trigger("wrongAnswer")
          
     }
     
-    showCorrect()
-    nextWord()
 
 })
 
 
+$("body").on("wrongAnswer",function(){
+ 
+    removeLife();
+    score--
+    
+    showAnswer()
+    nextWord(1500)
+
+ })
+ 
+ 
+ $("body").on("correctAnswer",function(){
+ 
+    score++
+    
+    showAnswer()
+    nextWord(400)
+
+ })
 
 
-
-generateQuestion()
+nextWord()
 generateStars()
 
 }
 
-init(db)
+init()
