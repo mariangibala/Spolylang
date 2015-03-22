@@ -29,6 +29,7 @@ var lifes = 6;
 var word;
 var languageA = "pl";
 var languageB = "en";
+var body = $('body');
 
 
 // ----------------------------------------------------
@@ -165,13 +166,13 @@ $("#container").on("click touchend","li", function(e){
     if (word[languageB] === $(this).text()) {
         
         
-        $("body").trigger("correctAnswer")
+        body.trigger("correctAnswer")
        
         
     } else {
     
 
-        $("body").trigger("wrongAnswer")
+        body.trigger("wrongAnswer")
          
     }
     
@@ -179,7 +180,7 @@ $("#container").on("click touchend","li", function(e){
 })
 
 
-$("body").on("wrongAnswer",function(){
+body.on("wrongAnswer",function(){
  
     removeLife();
     score--
@@ -190,7 +191,7 @@ $("body").on("wrongAnswer",function(){
  })
  
  
- $("body").on("correctAnswer",function(){
+body.on("correctAnswer",function(){
  
     score++
     
