@@ -15,15 +15,15 @@ $("#menu").on("click touchend", function(e){
     
     if (menuActive) {
     
-        $("#menuView").stop(true,true).animate({"left":$(window).width(), opacity:0},{duration:400, easing:"easeOutQuart"})
-        $("#view1").stop(true,true).animate({"left":0, opacity:1},{duration:400, easing:"easeOutQuart"})
+        $("#menuView").velocity("stop").velocity({"left":$(window).width(), opacity:0},{duration:400, easing:"easeOutQuart"})
+        $("#view1").velocity("stop").velocity({"left":0, opacity:1},{duration:400, easing:"easeOutQuart"})
         menuActive = !menuActive;
     
     } else {
     
     
-        $("#menuView").stop(true,true).animate({"left":0, opacity:1},{duration:400, easing:"easeOutQuart"})
-        $("#view1").stop(true,true).animate({"left":$(window).width()*-1, opacity:0},{duration:400, easing:"easeOutQuart"})
+        $("#menuView").velocity("stop").velocity({"left":0, opacity:1},{duration:400, easing:"easeOutQuart"})
+        $("#view1").velocity("stop").velocity({"left":$(window).width()*-1, opacity:0},{duration:400, easing:"easeOutQuart"})
         menuActive = !menuActive;
     
     }

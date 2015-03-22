@@ -49,7 +49,7 @@ var generateStars = function(){
 
 var removeLife = function(){
 
-   $($("#stars > .star")[lifes]).fadeTo(300,0.1)
+   $($("#stars > .star")[lifes]).velocity({opacity:0.3}, {duration:300})
    lifes--;
 
 };
@@ -134,14 +134,16 @@ var nextWord = function(delayTime){
 
     $("#score").html(score);
 
-    $("#container").delay(delayTime).fadeOut(300,function(){
+    $("#container").delay(delayTime).velocity("fadeOut", {duration:300, complete:function(){
      
      
           generateQuestion()
           timer.start()
-          $("#container").fadeIn(300)
+          $("#container").velocity("fadeIn", {duration:300})
           interactionsActive = true;
      
+    }
+    
     });
    
 

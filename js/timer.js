@@ -19,7 +19,7 @@ timer.start = function(){
 timer.stop = function(){
 
     clearInterval(timer.interval)
-    $("#timerScale").stop(true,false)
+    $("#timerScale").velocity("stop")
     
 };
 
@@ -29,7 +29,7 @@ timer.resetAnimation = function(animationTime){
 
     var windowWidth = $(window).width();
     
-    $("#timerScale").stop(true,true).css("width", windowWidth).animate({ width:0 },  animationTime);
+    $("#timerScale").velocity("stop").css("width", windowWidth).velocity({ width:0 },  animationTime);
 
 }
 
