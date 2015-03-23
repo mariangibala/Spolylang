@@ -131,13 +131,9 @@ $("#container").on("click touchend","li", function(e){
 
 });
 
-core.eventBus.on("pauseGame",function(){
- 
- 
-    question.blockInteractions()
- 
 
-})
+
+
 
 
 return question

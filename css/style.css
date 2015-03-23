@@ -31,6 +31,7 @@ body {
  
 font-family:Arial, sans-serif;  
 color:#fff;
+background:#393939;
 background-image:radial-gradient(circle at 94.01% 88.04%, #54a4ff, transparent 100%),radial-gradient(circle at 12.4% 23.65%, #ff94fb, transparent 100%),radial-gradient(circle at 50% 50%, #000000, #000000 100%);
 overflow:hidden;
 
