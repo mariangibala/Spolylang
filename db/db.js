@@ -1,7 +1,7 @@
 // ----------------------------------------------------
 // Database //
 //-----------------------------------------------------
-var db = (function(){
+define(function() {
 
 var db = {}
 
@@ -156,7 +156,7 @@ db.words = [
         "en": "co-operation"
     },
     {
-        "pl": "hanel",
+        "pl": "handel",
         "en": "commerce"
     },
     {

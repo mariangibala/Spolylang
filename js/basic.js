@@ -1,18 +1,31 @@
+define(function() {
+ 
 // ----------------------------------------------------
-// Helper functions //
+// Basic helper functions //
 //-----------------------------------------------------
-var basic = (function(){
 
+        
 var basic = {}
 
-basic.getRandomBetween = function(a, b) {
+
+
+// ----------------------------------------------------
+// Get random number between A and B //
+//-----------------------------------------------------
+
+basic.getRandomNumber = function(a, b) {
    
     return Math.floor(Math.random() * ( b - a + 1)) + a;
 
 };
 
 
-// randomize function Fisher–Yates algorithm
+
+// ----------------------------------------------------
+// randomize function Fisher–Yates algorithm //
+//-----------------------------------------------------
+
+
 basic.shuffle = function(array) {
     
     var m = array.length, t, i;
@@ -37,13 +50,15 @@ basic.shuffle = function(array) {
 
 
 
+return basic;		
+		
+		
+		
+
+		
+		
+});
 
 
 
-
-
-return basic;
-
-
-}())
 
