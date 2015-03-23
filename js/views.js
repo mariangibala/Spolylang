@@ -9,7 +9,7 @@ var menuActive = false
 
 $("#menuView").css("left",$(window).width())
 
-$("#menu").on("click touchend", function(e){
+$("#menuIcon").on("click touchend", function(e){
 
     e.preventDefault();
     

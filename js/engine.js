@@ -24,8 +24,10 @@ console.log(db.length + " words in the database")
 // Define global variables //
 //-----------------------------------------------------
 
-var score = 0;
-var lifes = 6;
+var game = {}
+game.score = 0;
+
+var lifes;
 var word;
 var languageA = "pl";
 var languageB = "en";
@@ -37,19 +39,24 @@ var languageB = "en";
 
 var generateStars = function(){
 
-    for (var x=0; x<=lifes; x++) {
+    $("#stars").css("top", "10px")
+    $("#stars").empty()
+    
+    for (var x=0; x<lifes; x++) {
     
         var star = '<img src="img/star@2x.png" width="30px" height="30px" class="star">';
         $("#stars").append(star)
     
     
     }
+    
+    $("#stars").velocity({opacity:1, top:"40px"}, 300)
 
 };
 
 var removeLife = function(){
 
-   $($("#stars > .star")[lifes]).velocity({opacity:0.3}, {duration:300})
+   $($("#stars > .star")[lifes-1]).velocity({opacity:0.3}, {duration:300})
    lifes--;
 
 };
@@ -128,19 +135,44 @@ var showAnswer = function() {
 };
 
 
+var updateScore = function(value){
+
+    game.score = game.score + value
+    
+    $("#scoreValue").velocity({opacity:0, top:"-20px"},{duration:150, easing:"easeInOutQuint", complete:function(){
+     
+        $("#scoreValue").html(game.score);
+        $("#scoreValue").css("top", 20);
+        $("#scoreValue").velocity({opacity:1, top:0}, {duration:150, easing:"easeInOutQuint"})
+     
+     
+     
+    }})
+    
+   
+
+
+};
+
+
 // pass delay time as attribute so you can use diferent feedback time for wrong and correct answer
 var nextWord = function(delayTime){
+    
 
-
-    $("#score").html(score);
-
-    $("#container").delay(delayTime).velocity("fadeOut", {duration:300, complete:function(){
+    $("#container").velocity("fadeOut", {duration:300, delay:delayTime, complete:function(){
      
-     
-          generateQuestion()
-          timer.start()
-          $("#container").velocity("fadeIn", {duration:300})
-          interactionsActive = true;
+          if (lifes > 0) {
+          
+              generateQuestion()
+              timer.start(game.score)
+              $("#container").velocity("fadeIn", {duration:300})
+              interactionsActive = true;
+          
+          } else  {
+          
+              gameOver()
+          
+          }
      
     }
     
@@ -176,32 +208,77 @@ $("#container").on("click touchend","li", function(e){
     }
     
 
-})
+});
 
 
 $("body").on("wrongAnswer",function(){
  
     removeLife();
-    score--
+    updateScore(-150);
     
-    showAnswer()
-    nextWord(1500)
+    showAnswer();
+    nextWord(1500);
 
  })
  
  
- $("body").on("correctAnswer",function(){
- 
-    score++
+$("body").on("correctAnswer",function(){
+
+    // faster answer = more score
+    var scoreUp = 100 + (Math.floor(timer.value / 100))
+    updateScore(scoreUp);
     
     showAnswer()
     nextWord(400)
 
- })
+})
+ 
+ 
+$("#modal").on("click touchend",function(e){
+
+    e.preventDefault()
+    
+    $(this).velocity("fadeOut",{duration:300, display:"none"})
+    startGame();
 
 
-nextWord()
-generateStars()
+});
+
+ 
+
+var resetGame = function(){
+
+
+    lifes = 3;
+    game.score = 0;
+    updateScore(0);
+    $("#scoreValue").velocity({fontSize:"26px"}, {duration:150, easing:"easeInOutQuint"})
+
+}
+
+
+var startGame = function(){
+
+
+    resetGame();
+    generateStars();
+  
+    nextWord(0);
+
+}
+
+var gameOver = function(){
+
+
+    $("#modalContent").html("<p>Try Again</p>")
+    $("#modal").velocity("fadeIn",{ display:"block", duration:300})
+    $("#scoreValue").velocity({fontSize:"50px"}, {duration:150, easing:"easeInOutQuint"})
+
+}
+
+
+
+
 
 }
 

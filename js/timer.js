@@ -2,15 +2,15 @@ var timer = (function(){
 
 var timer = {}
 
-timer.timeToAnswer = 5000;
+timer.timeToAnswer = 5000 ;
 
 timer.value = timer.timeToAnswer;
 
-timer.start = function(){
+timer.start = function(score){
 
-    this.value = this.timeToAnswer;
+    this.value = Math.floor(this.timeToAnswer - score) ;
     
-    this.resetAnimation(timer.timeToAnswer)
+    this.resetAnimation(this.value)
     
     this.createNewInterval();
 
@@ -45,7 +45,7 @@ timer.createNewInterval = function(){
      
         timer.value -= 100;
 
-        if (timer.value === 0) {
+        if (timer.value < 0) {
         
             clearInterval(timer.interval);
             

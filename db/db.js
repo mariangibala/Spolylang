@@ -52,8 +52,8 @@ db.words = [
         "en": "trade"
     },
     {
-        "pl": "customer",
-        "en": "klient"
+        "pl": "klient",
+        "en": "customer"
     },
     {
         "pl": "zakup",
@@ -68,20 +68,16 @@ db.words = [
         "en": "employee"
     },
     {
-        "pl": "director",
-        "en": "dyrektor"
-    },
-    {
-        "pl": "pracownik",
-        "en": "employee"
+        "pl": "dyrektor",
+        "en": "director"
     },
     {
         "pl": "oferta",
         "en": "offer"
     },
     {
-        "pl": "salary",
-        "en": "wynagrodzenie"
+        "pl": "wynagrodzenie",
+        "en": "salary"
     },
     {
         "pl": "cel",
@@ -168,12 +164,8 @@ db.words = [
         "en": "conference "
     },
     {
-        "pl": "konferencja",
-        "en": "conference "
-    },
-    {
         "pl": "kontrakt",
-        "en": "contract "
+        "en": "contract"
     },
     {
         "pl": "ekonomiczny",
@@ -181,7 +173,7 @@ db.words = [
     },
     {
         "pl": "wymiana",
-        "en": "exchange "
+        "en": "exchange"
     }
 	
 

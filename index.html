@@ -25,6 +25,8 @@
 
 
 <link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/font-awesome.min.css" />
+
 
 </head>
 
@@ -32,18 +34,24 @@
 
 
 
-<div id="menu">
+
+<span id="menuIcon" class="fa fa-bars"></span> 
 
 
 
-
-</div>
 
 <div id="view1">
-
+  
     <div id="timer"><div id="timerScale"></div></div>
     <div id="stars"></div>
-    <div id="score">0</div>
+    <div id="score">Score:<br><span id="scoreValue">0</span></div>
+    <div id="modal">
+    
+        <div id="modalContent">
+        <p>Start</p>
+        
+        </div>
+    </div>
     <div id="container">
     
         <!-- question placeholder -->
@@ -58,7 +66,7 @@
 
    <ul>
    
-       <li>Start</li>
+       <li>Continue</li>
        <li>Options</li>
        <li>Statistics</li>
        <li>Exit</li>
@@ -67,10 +75,10 @@
     
 
     
-    </div>
-
-
 </div>
+
+
+
 
 
 <script src="db/db.js" type="text/javascript"></script>
