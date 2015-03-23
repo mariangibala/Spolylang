@@ -31,7 +31,6 @@ var lifes;
 var word;
 var languageA = "pl";
 var languageB = "en";
-var body = $('body');
 
 
 // ----------------------------------------------------
@@ -198,13 +197,13 @@ $("#container").on("click touchend","li", function(e){
     if (word[languageB] === $(this).text()) {
         
         
-        body.trigger("correctAnswer")
+        $("body").trigger("correctAnswer")
        
         
     } else {
     
 
-        body.trigger("wrongAnswer")
+        $("body").trigger("wrongAnswer")
          
     }
     
@@ -212,7 +211,7 @@ $("#container").on("click touchend","li", function(e){
 });
 
 
-body.on("wrongAnswer",function(){
+$("body").on("wrongAnswer",function(){
  
     removeLife();
     updateScore(-150);
@@ -223,17 +222,11 @@ body.on("wrongAnswer",function(){
  })
  
  
-<<<<<<< HEAD
 $("body").on("correctAnswer",function(){
 
     // faster answer = more score
     var scoreUp = 100 + (Math.floor(timer.value / 100))
     updateScore(scoreUp);
-=======
-body.on("correctAnswer",function(){
- 
-    score++
->>>>>>> origin/master
     
     showAnswer()
     nextWord(400)
