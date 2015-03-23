@@ -19,6 +19,7 @@ $("#menuIcon").on("click touchend", function(e){
         $("#menuView").velocity("stop").velocity({"left":$(window).width(), opacity:0},{duration:400, easing:"easeOutQuart"})
         $("#view1").velocity("stop").velocity({"left":0, opacity:1},{duration:400, easing:"easeOutQuart"})
         menuActive = !menuActive;
+        core.eventBus.triggerHandler("continueGame")
 		
 		
     

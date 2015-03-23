@@ -65,10 +65,25 @@ question.generate = function(){
                     '</ul>'
     
     $("#container").html(template)
-	interactionsActive = true;
+	question.activateInteractions()
     
 
 };
+
+
+question.blockInteractions = function(){
+
+    interactionsActive = false;
+
+};
+
+
+question.activateInteractions = function(){
+
+    interactionsActive = true;
+
+};
+
 
 
 question.showAnswer = function() {
@@ -96,7 +111,7 @@ $("#container").on("click touchend","li", function(e){
     // we have to block interactions to avoid doubleclicks etc.
     if (interactionsActive === false) return;
     
-    interactionsActive = false;
+    question.blockInteractions()
     
     $(this).css("background","rgba(0,0,0,0.3)")
 
@@ -116,7 +131,13 @@ $("#container").on("click touchend","li", function(e){
 
 });
 
+core.eventBus.on("pauseGame",function(){
+ 
+ 
+    question.blockInteractions()
+ 
 
+})
 
 
 return question

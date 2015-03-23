@@ -5,7 +5,8 @@ require.config({
     },
 	shim: {
         
-		'velocity.min': ['jquery']
+		'velocity.min': ['jquery'],
+        'engine':["jquery"]
 
 	}
 });

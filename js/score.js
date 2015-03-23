@@ -19,6 +19,7 @@ score.value = 0
 score.update = function(value){
 
     score.value = score.value + value;
+    if ( score.value < 0 ) score.value = 0;
     
    	el.velocity({opacity:0, top:"-20px"},{duration:150, easing:"easeInOutQuint", complete:function(){
      

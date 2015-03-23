@@ -22,7 +22,7 @@ document.addEventListener('touchmove',function(e){
 var nextWord = function(delayTime){
     
 
-    $("#container").velocity("fadeOut", {duration:300, delay:delayTime, complete:function(){
+    $("#container").velocity("fadeOut", {  queue: false, duration:300, delay:delayTime, complete:function(){
      
           if (lifes.active > 0) {
           
@@ -67,6 +67,8 @@ core.eventBus.on("correctAnswer",function(){
 
 });
  
+ 
+
  
 $("#modal").on("click touchend",function(e){
 

@@ -20,6 +20,15 @@ timer.start = function(score){
 
 };
 
+
+timer.play = function(){
+ 
+    this.continueAnimation(this.value)
+    
+    this.createNewInterval();
+
+};
+
 timer.stop = function(){
 
     clearInterval(timer.interval)
@@ -27,13 +36,6 @@ timer.stop = function(){
 
 };
 
-
-timer.pause = function(){
-	
-	clearInterval(timer.interval)
-	$("#timerScale").velocity("stop")	
-
-};
 
 
 
@@ -43,6 +45,15 @@ timer.resetAnimation = function(animationTime){
     var windowWidth = $(window).width();
     
     $("#timerScale").velocity("stop").css("width", windowWidth).velocity({ width:0 },  animationTime);
+	
+
+};
+
+
+timer.continueAnimation = function(animationTime){
+
+    
+    $("#timerScale").velocity("stop").velocity({ width:0 },  animationTime);
 	
 
 };
@@ -97,9 +108,19 @@ core.eventBus.on("showQuestion",function(){
 core.eventBus.on("pauseGame",function(){
 	
 	
-	timer.pause();
+	timer.stop();
 
 });
+
+
+core.eventBus.on("continueGame",function(){
+	
+	
+	timer.play();
+
+});
+
+ 
 
 
 
