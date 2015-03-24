@@ -92,10 +92,10 @@ z-index:1000;
 
 }
 
-#score {
+#score2 {
 
 position:absolute;
-bottom:30px;
+bottom:60px;
 width:100%;
 text-align:center;
 font-size:16px;
@@ -169,7 +169,7 @@ margin:auto;
 
 }
 
-#timer {
+#timer2 {
 
 width:100%;
 position:absolute;
@@ -221,6 +221,20 @@ height:100%;
 text-align:center;
 padding-top:90px;
 font-size:22px;
+
+}
+
+#messages {
+
+position:absolute;
+bottom:0;
+padding:10px 0;
+width:100%;
+text-align:center;
+font-size:16px;
+background:rgba(0,0,0,0.4);
+display:none;
+
 
 }
 

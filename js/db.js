@@ -1,9 +1,10 @@
 // ----------------------------------------------------
 // Database //
 //-----------------------------------------------------
-define(function() {
+!(function() {
 
-var db = {}
+var db = {};
+db.init = function(){
 
 db.words = [
 
@@ -179,11 +180,11 @@ db.words = [
 
 ]
 
+}
+
+return window.db = db;
 
 
-return db;
-
-
-}())
+})();
 
 

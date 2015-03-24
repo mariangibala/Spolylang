@@ -1,11 +1,12 @@
-define(["./core", "./score"], function(core, score) {
+!(function() {
 
 // ----------------------------------------------------
 // Timer module //
 //-----------------------------------------------------
 
 var timer = {}
-
+timer.init = function(){
+	
 timer.timeToAnswer = 5000 ;
 
 timer.value = timer.timeToAnswer;
@@ -142,8 +143,9 @@ core.scoreModificators.push(scoreModificator);
 
 
 
+}
 
-return timer
+return window.timer = timer
 
 
-});
+})();

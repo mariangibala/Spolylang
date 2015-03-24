@@ -1,6 +1,7 @@
-define(function() {
+!(function() {
 
 var lifes = {}
+lifes.init = function(){
 
 lifes.total = 3
 
@@ -60,10 +61,9 @@ lifes.removeOne = function(){
 
 };
 
+}
+
+return window.lifes = lifes
 
 
-
-return lifes
-
-
-});
+})();

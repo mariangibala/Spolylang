@@ -1,10 +1,12 @@
-define(function() {
+!(function() {
 
 // ----------------------------------------------------
 // Core is singleton connector between modules //
 //-----------------------------------------------------
 
 var core = {}
+core.init = function(){
+
 core.eventBus = $(window)
 
 // ----------------------------------------------------
@@ -27,9 +29,9 @@ core.getScoreModificators = function(){
 	
 }
 
+}
+
+return window.core = core
 
 
-return core
-
-
-});
+})();

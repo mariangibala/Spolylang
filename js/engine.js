@@ -1,4 +1,4 @@
-define(["./core", "./question", "./lifes", "./score", "./timer", "./views"], function(core, question, lifes, score, timer, views) {
+!(function() {
 
 // ----------------------------------------------------
 // Engine //
@@ -34,6 +34,7 @@ var nextWord = function(delayTime){
           } else  {
           
               gameOver()
+			  message.show("Game Over!")
           
           }
      
@@ -101,6 +102,7 @@ var pauseGame = function(){
 var startGame = function(){
 
     resetGame();
+	message.show("GO!")
     nextWord(0);
 
 }
@@ -121,7 +123,7 @@ var gameOver = function(){
 }
 
 
-return engine
+return window.engine = engine
 
-});
+})();
 

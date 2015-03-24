@@ -1,13 +1,11 @@
-define(function() {
+!(function() {
  
 // ----------------------------------------------------
 // Basic helper functions //
 //-----------------------------------------------------
-
         
 var basic = {}
-
-
+basic.init = function(){
 
 // ----------------------------------------------------
 // Get random number between A and B //
@@ -48,16 +46,12 @@ basic.shuffle = function(array) {
 
 
 
+}
 
-
-return basic;		
+return window.basic = basic;		
 		
 		
-		
-
-		
-		
-});
+})();
 
 
 

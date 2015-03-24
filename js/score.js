@@ -1,4 +1,4 @@
-define(["./core"], function(core) {
+!(function() {
  
 // ----------------------------------------------------
 // Score module //
@@ -6,7 +6,7 @@ define(["./core"], function(core) {
 
         
 var score = {}
-
+score.init = function(){
 
 // ----------------------------------------------------
 // Local variables //
@@ -42,16 +42,13 @@ score.reset = function(){
 
 };
 
+}
 
-
-return score;		
+return window.score = score;		
 		
+	
 		
-		
-
-		
-		
-});
+})();
 
 
 

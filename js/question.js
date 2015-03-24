@@ -1,7 +1,7 @@
-define(["../db/db","./basic", "./core"], function( db, basic, core) {
+!(function() {
 
 var question = {}
-
+question.init = function(){
 // ----------------------------------------------------
 // Import database //
 //-----------------------------------------------------
@@ -134,9 +134,8 @@ $("#container").on("click touchend","li", function(e){
 
 
 
+}
 
+return window.question = question
 
-return question
-
-
-});
+})();

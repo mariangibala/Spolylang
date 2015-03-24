@@ -1,10 +1,11 @@
-define(["./core"], function(core) {
+!(function() {
 
 // ----------------------------------------------------
 // Views //
 //-----------------------------------------------------
 
 var views = {}
+views.init = function(){
 
 var menuActive = false
 
@@ -39,11 +40,11 @@ $("#menuIcon").on("click touchend", function(e){
 
 
 
+}
 
 
+return window.views = views;
 
-return views;
 
-
-})
+})();
 
