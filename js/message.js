@@ -5,6 +5,7 @@
 //-----------------------------------------------------
 
 var message = {}
+
 message.init = function(){
 	
 el = $("#messages")

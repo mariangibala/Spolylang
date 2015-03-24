@@ -1,11 +1,34 @@
 !(function() {
 
 // ----------------------------------------------------
-// Core is singleton connector between modules //
+// Core is connector between modules //
 //-----------------------------------------------------
 
 var core = {}
 core.init = function(){
+
+core.game = {}
+core.game.isPlayingStatus = false;
+
+
+core.game.isPlaying = function(){
+
+	return this.isPlayingStatus;
+}
+
+core.game.start = function(){
+
+	this.isPlayingStatus = true;
+
+}
+
+core.game.end = function(){
+
+	this.isPlayingStatus = false;
+
+}
+
+
 
 core.eventBus = $(window)
 

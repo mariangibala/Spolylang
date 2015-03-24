@@ -116,8 +116,7 @@ core.eventBus.on("pauseGame",function(){
 
 core.eventBus.on("continueGame",function(){
 	
-	
-	timer.play();
+	if (core.game.isPlaying() == true) timer.play();
 
 });
 

@@ -92,25 +92,21 @@ var resetGame = function(){
 
 }
 
-var pauseGame = function(){
- 
-    core.eventBus.triggerHandler("pauseGame") 
-
-}
-
 
 var startGame = function(){
 
     resetGame();
 	message.show("GO!")
     nextWord(0);
+	core.game.start()
 
 }
 
 var gameOver = function(){
 
-
-    $("#modalContent").html("<p>Try Again</p>")
+	core.game.end()
+    
+	$("#modalContent").html("<p>Try Again</p>")
     $("#modal").velocity("fadeIn",{ display:"block", duration:300})
     $("#scoreValue").velocity({fontSize:"50px"}, {duration:150, easing:"easeInOutQuint"})
 
