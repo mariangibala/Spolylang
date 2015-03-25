@@ -88,6 +88,12 @@ core.eventBus.on("gameOver", function(){
 
 });
 
+$(document).ready(function(){
+
+    core.eventBus.triggerHandler("startApp");
+
+});
+
 
 }
 

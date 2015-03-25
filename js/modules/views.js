@@ -7,7 +7,10 @@
 var views = {} 
 views.init = function(){
 
+
 var menuActive = false
+mainView =  $("#view1")
+$("#menuView").css("display","block")
 
 $("#menuView").css("left",$(window).width())
 
@@ -17,8 +20,8 @@ $("#menuIcon").on("click touchend", function(e){
     
     if (menuActive) {
     
-        $("#menuView").velocity("stop").velocity({left: $(window).width(), opacity:0},{duration:400, easing:"easeOutQuart"})
-        $("#view1").velocity("stop").velocity({left:0, opacity:1},{duration:400, easing:"easeOutQuart"})
+        $("#menuView").velocity("stop").velocity({left: $(window).width(), opacity:0},{ duration:400, easing:"easeOutQuart"})
+        mainView.velocity("stop").velocity({left:0, opacity:1},{delay:200, duration:400, easing:"easeOutQuart"})
         menuActive = !menuActive;
         
 		
@@ -28,8 +31,8 @@ $("#menuIcon").on("click touchend", function(e){
     } else {
     
     
-        $("#menuView").velocity("stop").velocity({left:0, opacity:1},{duration:400, easing:"easeOutQuart"})
-        $("#view1").velocity("stop").velocity({left: $(window).width()*-1, opacity:0},{duration:400, easing:"easeOutQuart"})
+        $("#menuView").velocity("stop").velocity({left:0, opacity:1},{delay:200, duration:400, easing:"easeOutQuart"})
+        mainView.velocity("stop").velocity({left: $(window).width()*-1, opacity:0},{duration:400, easing:"easeOutQuart"})
         menuActive = !menuActive;
 		
 		core.eventBus.triggerHandler("pauseGame")
@@ -39,7 +42,11 @@ $("#menuIcon").on("click touchend", function(e){
 
 })
 
+core.eventBus.on("startApp", function(){
 
+    mainView.velocity({opacity:1},{display:"block"})
+
+})
 
 }
 

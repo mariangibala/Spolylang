@@ -501,6 +501,12 @@ core.eventBus.on("gameOver", function(){
 
 });
 
+$(document).ready(function(){
+
+    core.eventBus.triggerHandler("startApp");
+
+});
+
 
 }
 
@@ -538,6 +544,12 @@ var reset = function(){
 
 	level = 0;
 	answers = 0;
+    
+    for (var x = 0; x < modules.length ; x++) {
+	
+		updateModuleSettings(modules[x])
+	
+	}
 
 };
 
@@ -738,8 +750,6 @@ core.eventBus.on("wrongAnswer",function(){
 core.eventBus.on("startGame",function(){
  
     reset()
-	console.log("yy")
-	
 	
 
 }); 
@@ -1203,7 +1213,10 @@ return window.timer = timer
 var views = {} 
 views.init = function(){
 
+
 var menuActive = false
+mainView =  $("#view1")
+$("#menuView").css("display","block")
 
 $("#menuView").css("left",$(window).width())
 
@@ -1213,8 +1226,8 @@ $("#menuIcon").on("click touchend", function(e){
     
     if (menuActive) {
     
-        $("#menuView").velocity("stop").velocity({left: $(window).width(), opacity:0},{duration:400, easing:"easeOutQuart"})
-        $("#view1").velocity("stop").velocity({left:0, opacity:1},{duration:400, easing:"easeOutQuart"})
+        $("#menuView").velocity("stop").velocity({left: $(window).width(), opacity:0},{ duration:400, easing:"easeOutQuart"})
+        mainView.velocity("stop").velocity({left:0, opacity:1},{delay:200, duration:400, easing:"easeOutQuart"})
         menuActive = !menuActive;
         
 		
@@ -1224,8 +1237,8 @@ $("#menuIcon").on("click touchend", function(e){
     } else {
     
     
-        $("#menuView").velocity("stop").velocity({left:0, opacity:1},{duration:400, easing:"easeOutQuart"})
-        $("#view1").velocity("stop").velocity({left: $(window).width()*-1, opacity:0},{duration:400, easing:"easeOutQuart"})
+        $("#menuView").velocity("stop").velocity({left:0, opacity:1},{delay:200, duration:400, easing:"easeOutQuart"})
+        mainView.velocity("stop").velocity({left: $(window).width()*-1, opacity:0},{duration:400, easing:"easeOutQuart"})
         menuActive = !menuActive;
 		
 		core.eventBus.triggerHandler("pauseGame")
@@ -1235,7 +1248,11 @@ $("#menuIcon").on("click touchend", function(e){
 
 })
 
+core.eventBus.on("startApp", function(){
 
+    mainView.velocity({opacity:1},{display:"block"})
+
+})
 
 }
 

@@ -26,6 +26,12 @@ var reset = function(){
 
 	level = 0;
 	answers = 0;
+    
+    for (var x = 0; x < modules.length ; x++) {
+	
+		updateModuleSettings(modules[x])
+	
+	}
 
 };
 

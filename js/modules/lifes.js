@@ -76,8 +76,6 @@ core.eventBus.on("wrongAnswer",function(){
 core.eventBus.on("startGame",function(){
  
     reset()
-	console.log("yy")
-	
 	
 
 }); 

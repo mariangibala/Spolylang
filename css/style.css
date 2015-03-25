@@ -38,20 +38,21 @@ overflow:hidden;
 
 }
 
-#view1 {
+.view {
 
 width:100%;
 height:100%;
 position:absolute;
 left:0;
+display:none;
+
 
 }
 
+
 #menuView {
 
-width:100%;
-height:100%;
-position:absolute;
+
 text-align:center;
 
 
