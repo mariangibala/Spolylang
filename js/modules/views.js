@@ -4,7 +4,7 @@
 // Views //
 //-----------------------------------------------------
 
-var views = {}
+var views = {} 
 views.init = function(){
 
 var menuActive = false

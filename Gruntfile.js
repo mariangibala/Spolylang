@@ -8,18 +8,9 @@ module.exports = function(grunt) {
 		dist: {
 		src: [
 			
-			'js/lib/jquery.js',
+			'js/lib/jquery.js', 
 			'js/lib/velocity.js',
-			'js/db.js',
-			'js/basic.js',
-			'js/core.js',
-			'js/lifes.js',
-			'js/message.js',
-			'js/question.js',
-			'js/score.js',
-			'js/timer.js',
-			'js/views.js',
-			'js/engine.js',
+			'js/modules/*.js',
 			'js/init.js'
 		   
 		],
@@ -39,7 +30,8 @@ module.exports = function(grunt) {
   
    watch: {
 	   scripts: {
-			files: ['source/*.js'],
+			files: ['js/*.js', 'js/modules/*.js'],
+			//tasks: ['concat'],
 			tasks: ['concat', 'uglify'],
 			options: {
 				spawn: false,

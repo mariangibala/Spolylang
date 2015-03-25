@@ -41,7 +41,7 @@ var generateImages = function(){
 //-----------------------------------------------------
 
 
-lifes.reset = function(){
+var reset = function(){
 
 	lifes.active = lifes.total;
 	generateImages();
@@ -54,13 +54,34 @@ lifes.reset = function(){
 //-----------------------------------------------------
 
 
-lifes.removeOne = function(){
+var removeOne = function(){
 
    $($("#stars > .star")[lifes.active-1]).velocity({opacity:0.3}, {duration:300})
    lifes.active--;
 
 };
 
+// ----------------------------------------------------
+// Add events listeners //
+//-----------------------------------------------------
+
+core.eventBus.on("wrongAnswer",function(){
+ 
+    removeOne();
+	if (lifes.active == 0) core.eventBus.triggerHandler("gameOver")
+
+});
+
+
+core.eventBus.on("startGame",function(){
+ 
+    reset()
+	console.log("yy")
+	
+	
+
+}); 
+ 
 }
 
 return window.lifes = lifes

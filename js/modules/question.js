@@ -127,6 +127,8 @@ $("#container").on("click touchend","li", function(e){
        core.eventBus.triggerHandler("wrongAnswer")
          
     }
+	
+	 question.showAnswer()
     
 
 });

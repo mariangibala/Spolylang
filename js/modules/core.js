@@ -8,25 +8,31 @@ var core = {}
 core.init = function(){
 
 core.game = {}
-core.game.isPlayingStatus = false;
 
+
+// ----------------------------------------------------
+// Game status, Did player start the game? 
+//-----------------------------------------------------
+
+var isPlaying = false;
 
 core.game.isPlaying = function(){
 
-	return this.isPlayingStatus;
+	return isPlaying;
 }
 
 core.game.start = function(){
 
-	this.isPlayingStatus = true;
+	isPlaying = true;
 
 }
 
 core.game.end = function(){
 
-	this.isPlayingStatus = false;
+	isPlaying = false;
 
 }
+
 
 
 
