@@ -18,7 +18,7 @@ var languageA = "pl";
 var languageB = "en";
 var word;
 var interactionsActive =  false
-
+var container = $("#question_placeholder")
 // ----------------------------------------------------
 // Generate question//
 //-----------------------------------------------------
@@ -58,13 +58,13 @@ question.generate = function(){
   
 
     var template =  '<div id="word"><p>' + word[languageA] + '</p></div>'+
-                    '<ul>'+
+                    '<ul id="answers">'+
                     '<li>' + answers[0] + '</li>'+
                     '<li>' + answers[1] + '</li>'+
                     '<li>' + answers[2] + '</li>'+
                     '</ul>'
     
-    $("#container").html(template)
+    container.html(template)
 	question.activateInteractions()
     
 
@@ -103,7 +103,7 @@ question.showAnswer = function() {
 
 };
 
-$("#container").on("click touchend","li", function(e){
+container.on("click touchend","li", function(e){
 
     e.preventDefault()
     
@@ -128,7 +128,7 @@ $("#container").on("click touchend","li", function(e){
          
     }
 	
-	 question.showAnswer()
+	question.showAnswer()
     
 
 });

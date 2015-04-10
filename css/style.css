@@ -1,242 +1,192 @@
 @charset "utf-8";
 /* CSS Document */
-
 /*************************
 General Styles 
 **************************/
 
-html, body, p, ul , li, a, input, button {
-
-margin:0;
-padding:0;
-border:0;
-list-style:none;
-text-decoration:none;
--webkit-font-smoothing: subpixel-antialiased;
--webkit-text-size-adjust: 100%;
-
+html,
+body,
+p,
+ul,
+li,
+a,
+input,
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  text-decoration: none;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-text-size-adjust: 100%;
 }
 
-
-html, body  {
-
-width:100%;
-height:100%;
-margin:0;
-padding:0;
-   
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
- 
-font-family:Arial, sans-serif;  
-color:#fff;
-background:#393939;
-background-image:radial-gradient(circle at 94.01% 88.04%, #54a4ff, transparent 100%),radial-gradient(circle at 12.4% 23.65%, #ff94fb, transparent 100%),radial-gradient(circle at 50% 50%, #000000, #000000 100%);
-overflow:hidden;
-
-
+  font-family: Arial, sans-serif;
+  color: #fff;
+  background: #393939;
+  overflow: hidden;
 }
+
+#bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+/*************************
+    General views shared style
+**************************/
 
 .view {
-
-width:100%;
-height:100%;
-position:absolute;
-left:0;
-display:none;
-
-
+  position: absolute;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 
-
-#menuView {
-
-
-text-align:center;
-
-
+.view > .navigationIcon {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  color: #fff;
+  font-size: 30px;
+  padding: 10px;
+  text-align: center;
+  z-index: 1000;
 }
+/*************************
+    Menu Style
+**************************/
 
 #menuView ul {
-
-margin-top:100px;
-
-
+  margin-top: 100px;
 }
-
 
 #menuView ul li {
-
-margin-top:2px;
-text-align:center;
-font-size:18px;
-padding:20px 0;
-transition:background 250ms;
-background:rgba(0,0,0,0.1);
-cursor:pointer;
-
-
+  margin-top: 2px;
+  text-align: center;
+  font-size: 18px;
+  padding: 20px 0;
+  transition: background 250ms;
+  background: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
-
-#menuIcon {
-
-
-position:absolute;
-top:30px;
-right:0;
-color:#fff;
-font-size:30px;
-padding:10px;
-text-align:center;
-z-index:1000;
-
-}
+/*************************
+    Game Style
+**************************/
 
 #score2 {
-
-position:absolute;
-bottom:60px;
-width:100%;
-text-align:center;
-font-size:16px;
-
-
-
+  position: absolute;
+  bottom: 60px;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
 }
 
 #scoreValue {
-
-position:relative;
-font-size:26px ;
-
+  position: relative;
+  font-size: 26px;
 }
 
-#container {
-
-position:absolute;
-width:100%;
-top:100px;
-left:50%;
-margin-left:-50%;
-
-
-
+#question_placeholder {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  width: 100%;
+  margin-left: -50%;
 }
 
 #word {
-
-text-align:center;
-font-size:22px;
-padding:20px 0;
-background:rgba(0,0,0,0.2);
-
+  text-align: center;
+  font-size: 22px;
+  padding: 20px 0;
+  background: rgba(0, 0, 0, 0.2);
 }
 
-ul {
-
-margin-top:20px;
-
+#main ul {
+  margin-top: 20px;
 }
 
-ul li {
-margin-top:2px;
-text-align:center;
-font-size:18px;
-padding:20px 0;
-transition:background 250ms;
-background:rgba(0,0,0,0.1);
-cursor:pointer;
-
+#main ul li {
+  margin-top: 2px;
+  text-align: center;
+  font-size: 18px;
+  padding: 20px 0;
+  transition: background 250ms;
+  background: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
-
 
 #stars {
-
-width:100%;
-position:absolute;
-left:50%;
-margin-left:-50%;
-text-align:center;
-top:40px;
-
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  margin-left: -50%;
+  text-align: center;
+  top: 40px;
 }
 
 .star {
-
-margin:auto;
-
-
-
+  margin: auto;
 }
 
 #timer2 {
-
-width:100%;
-position:absolute;
-left:50%;
-margin-left:-50%;
-text-align:center;
-top:0;
-
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  margin-left: -50%;
+  text-align: center;
 }
 
-#timerScale{
-
-width:100%;
-height:4px;
-
-background:rgba(0,255,0,0.7);
-
-
+#timerScale {
+  width: 100%;
+  height: 4px;
+  background: rgba(0, 255, 0, 0.7);
 }
 
 #modal {
-
-text-align:center;
-position:Absolute;
-top:50%;
-left:50%;
-width:200px;
-height:200px;
-margin-left:-110px;
-border-radius:200px;
-margin-top:-100px;
-border:10px solid rgba(255,255,255,0.4);
-
-
-
+  position: Absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  margin-left: -110px;
+  border-radius: 200px;
+  margin-top: -100px;
+  border: 10px solid rgba(255, 255, 255, 0.4);
+  text-align: center;
 }
 
 #modalContent {
-
-
-width:100%;
-height:100%;
-
-
+  width: 100%;
+  height: 100%;
 }
 
 #modalContent p {
-
-text-align:center;
-padding-top:90px;
-font-size:22px;
-
+  text-align: center;
+  padding-top: 90px;
+  font-size: 22px;
 }
 
 #messages {
-
-position:fixed;
-bottom:0;
-padding:10px 0;
-width:100%;
-text-align:center;
-font-size:16px;
-background:rgba(0,0,0,0.4);
-display:none;
-
-
+  position: fixed;
+  bottom: 0;
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
 }
-
-

@@ -21,7 +21,7 @@ var container = $("#stars")
 var generateImages = function(){
 
 	// prepare to animation and clean content
-	container.css("top", "10px")
+	container.css("bottom", "130px")
     container.empty()
     
     for (var x=0; x<lifes.active; x++) {
@@ -32,7 +32,7 @@ var generateImages = function(){
 
     }
     
-	container.velocity({opacity:1, top:"40px"}, 300)
+	container.velocity({opacity:1, bottom:"100px"}, 300)
 
 };
 

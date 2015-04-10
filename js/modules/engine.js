@@ -21,13 +21,13 @@ document.addEventListener('touchmove',function(e){
 var nextStep = function(delayTime){
     
 
-    $("#container").velocity("fadeOut", {  queue: false, duration:300, delay:delayTime, complete:function(){
+    $("#question_placeholder").velocity("fadeOut", {  queue: false, duration:300, delay:delayTime, complete:function(){
      
 		if (core.game.isPlaying() == true) {
 		
 			question.generate()
 			core.eventBus.triggerHandler("showQuestion")
-			$("#container").velocity("fadeIn", {duration:300})
+			$("#question_placeholder").velocity("fadeIn", {duration:300})
 		
 		
 		} else {
