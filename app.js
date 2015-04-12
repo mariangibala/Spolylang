@@ -490,6 +490,8 @@ core.eventBus.on("startGame", function(){
    	core.game.start()
 	nextStep(0)
 	message.show("GO!")
+    message.show("GO2!")
+    message.show("GO3!")
 
 });
 
@@ -763,30 +765,152 @@ return window.lifes = lifes
 !(function() {
 
 // ----------------------------------------------------
-// Modal module //
+// Messages module //
 //-----------------------------------------------------
 
 var message = {}
 
 message.init = function(){
+
+// ----------------------------------------------------
+// Local variables //
+//-----------------------------------------------------
 	
-el = $("#messages")
+var el = $("#messages");
+var topPosition = parseInt(el.css("top"),10);
+var topPositionBeforeShow = topPosition - 25;
+
+var isShowingMessage = false;
+var fastTrack = false;
+var messages = [];
+
+// ----------------------------------------------------
+// Create new message //
+//-----------------------------------------------------
+
+var createMessage = function(text){
+
+    messages.push(text);
+    
+    
+    // if this is first message - show it
+    if ((!isShowingMessage) && (messages.length === 1) ) {  
+    
+        isShowingMessage = true;
+        showMessage();
+
+    // if there are other messages - activate fastTrack
+    } else if ((isShowingMessage) && (messages.length > 1) && (!fastTrack)){
+    
+        activateFastTrack()
+    
+    } 
+
+};
+
+
+// ----------------------------------------------------
+// Takes message from the queue and activates animation //
+//-----------------------------------------------------
+
+var showMessage = function(){
+
+    var messageText = messages.shift()
+  
+    el.text(messageText)
+    el.css("top",topPositionBeforeShow)
+
+    animateMessage()
+    
+};
+
+
+// ----------------------------------------------------
+// Fast track - change speed to faster when other messages are in the queue //
+//-----------------------------------------------------
+
+var activateFastTrack = function(){
+ 
+    fastTrack = true;
+
+    el.velocity("stop");
+    
+    animateMessage();
+    
+
+};
+
+
+// ----------------------------------------------------
+// Animation  //
+//-----------------------------------------------------
+
+var animateMessage = function(){
+
+    if (fastTrack) {
+        
+        showTime = 200; 
+    
+    } else {
+    
+        showTime = 2200;
+    
+    } 
+    
+    
+    el.velocity({opacity:1, top:topPosition}, {delay: 50, display:"block", duration:350, easing:"easeOutQuart", complete:function(){
+        
+    
+            el.velocity({opacity:0},{display:"none", duration:400, easing:"easeOutQuart", delay:showTime, complete:function(){
+            
+                
+                checkQueue();
+            
+            
+            } })
+       
+    }})
+
+
+};
+
+// ----------------------------------------------------
+// Queue //
+//-----------------------------------------------------
+
+
+var checkQueue = function(){
+        
+    if (messages.length == 1) {  
+        
+        fastTrack = false;
+        showMessage(); 
+
+    } else if (messages.length > 0) {
+        
+        showMessage();
+    
+    } else {
+    
+        isShowingMessage = false;
+
+    }
+
+};
+
+
+
+// ----------------------------------------------------
+// Exposed methods //
+//-----------------------------------------------------
 
 message.show = function(text){
+    
+   
+    createMessage(text);
+    
 
-	el.text(text)
-	
-	el.velocity({opacity:1}, {delay: 50, display:"block", duration:300, complete:function(){
-	
-	
-		el.velocity({opacity:0},{display:"none", duration:300, delay:2500 })
-	
-	
-	
-	}})
-
-
-}
+};
 
 }
 
@@ -1226,22 +1350,23 @@ views.open = function(requestedView){
 
     var currentView = viewsTree[viewsTree.length - 1];
     
+    // do not continue if requested view is already open
     if (currentView == requestedView) return;
     
-    // store requested view in the array
+    // store requested view in the viewsTree array to keep views tracking
     viewsTree.push(requestedView)
     
-    // convert views names to jQuery selectors
-    currentView = "#" + currentView;
-    currentView = $(currentView)
+    // convert names to jQuery selectors
+    var currentViewId = "#" + currentView;
+    currentViewId = $(currentViewId)
   
     
-    requestedView = "#" + requestedView;
-    requestedView = $(requestedView)
+    var requestedViewId = "#" + requestedView;
+    requestedViewId = $(requestedViewId)
     
     // animate views out-in
-    currentView.velocity("stop").velocity({left: $(window).width()*-1, opacity:0},{duration:400, easing:"easeOutQuart"})
-    requestedView.velocity("stop").velocity({left:0, opacity:1},{delay:200, duration:400, easing:"easeOutQuart"})
+    currentViewId.velocity("stop").velocity({left: $(window).width()*-1, opacity:0},{duration:400, easing:"easeOutQuart"})
+    requestedViewId.velocity("stop").velocity({left:0, opacity:1},{delay:200, duration:400, easing:"easeOutQuart"})
     
     // trigger pause
     core.eventBus.triggerHandler("pauseGame")
@@ -1253,22 +1378,22 @@ views.open = function(requestedView){
 views.close = function(){
     
     var currentView = viewsTree.pop()
-    var newView = viewsTree[viewsTree.length - 1];
+    var requestedView = viewsTree[viewsTree.length - 1];
        
-    // convert views names to jQuery selectors
-    currentView = "#" + currentView;
-    currentView = $(currentView);
+    // convert names to jQuery selectors
+    var currentViewId = "#" + currentView;
+    currentViewId = $(currentViewId);
     
-    newView = "#" + newView;
-    newView = $(newView);
+    var requestedViewId = "#" + requestedView;
+    requestedViewId = $(requestedViewId);
     
       
     // animate views out-in
-    currentView.velocity("stop").velocity({left: $(window).width(), opacity:0},{ duration:400, easing:"easeOutQuart"})
-    newView.velocity("stop").velocity({left:0, opacity:1},{delay:200, duration:400, easing:"easeOutQuart"})
+    currentViewId.velocity("stop").velocity({left: $(window).width(), opacity:0},{ duration:400, easing:"easeOutQuart"})
+    requestedViewId.velocity("stop").velocity({left:0, opacity:1},{delay:200, duration:400, easing:"easeOutQuart"})
     
-    // continue game if started
-    if (core.game.isPlaying() == true) core.eventBus.triggerHandler("continueGame");
+    // continue game when user comes back to game view and game is started
+    if ((requestedView === "main") && (core.game.isPlaying() == true)) core.eventBus.triggerHandler("continueGame");
     
 
 };

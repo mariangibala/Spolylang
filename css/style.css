@@ -86,7 +86,7 @@ body {
     Game Style
 **************************/
 
-#score2 {
+#gameScore {
   position: absolute;
   bottom: 60px;
   width: 100%;
@@ -101,7 +101,7 @@ body {
 
 #question_placeholder {
   position: absolute;
-  top: 100px;
+  top: 150px;
   left: 50%;
   width: 100%;
   margin-left: -50%;
@@ -181,12 +181,12 @@ body {
 }
 
 #messages {
-  position: fixed;
-  bottom: 0;
+  position: absolute;
+  top: 100px;
   padding: 10px 0;
   width: 100%;
   text-align: center;
-  font-size: 16px;
-  background: rgba(0, 0, 0, 0.4);
+  font-size: 18px;
+  background: rgba(0, 0, 0, 0.3);
   display: none;
 }

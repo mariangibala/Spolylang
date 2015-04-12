@@ -20,22 +20,23 @@ views.open = function(requestedView){
 
     var currentView = viewsTree[viewsTree.length - 1];
     
+    // do not continue if requested view is already open
     if (currentView == requestedView) return;
     
-    // store requested view in the array
+    // store requested view in the viewsTree array to keep views tracking
     viewsTree.push(requestedView)
     
-    // convert views names to jQuery selectors
-    currentView = "#" + currentView;
-    currentView = $(currentView)
+    // convert names to jQuery selectors
+    var currentViewId = "#" + currentView;
+    currentViewId = $(currentViewId)
   
     
-    requestedView = "#" + requestedView;
-    requestedView = $(requestedView)
+    var requestedViewId = "#" + requestedView;
+    requestedViewId = $(requestedViewId)
     
     // animate views out-in
-    currentView.velocity("stop").velocity({left: $(window).width()*-1, opacity:0},{duration:400, easing:"easeOutQuart"})
-    requestedView.velocity("stop").velocity({left:0, opacity:1},{delay:200, duration:400, easing:"easeOutQuart"})
+    currentViewId.velocity("stop").velocity({left: $(window).width()*-1, opacity:0},{duration:400, easing:"easeOutQuart"})
+    requestedViewId.velocity("stop").velocity({left:0, opacity:1},{delay:200, duration:400, easing:"easeOutQuart"})
     
     // trigger pause
     core.eventBus.triggerHandler("pauseGame")
@@ -47,22 +48,22 @@ views.open = function(requestedView){
 views.close = function(){
     
     var currentView = viewsTree.pop()
-    var newView = viewsTree[viewsTree.length - 1];
+    var requestedView = viewsTree[viewsTree.length - 1];
        
-    // convert views names to jQuery selectors
-    currentView = "#" + currentView;
-    currentView = $(currentView);
+    // convert names to jQuery selectors
+    var currentViewId = "#" + currentView;
+    currentViewId = $(currentViewId);
     
-    newView = "#" + newView;
-    newView = $(newView);
+    var requestedViewId = "#" + requestedView;
+    requestedViewId = $(requestedViewId);
     
       
     // animate views out-in
-    currentView.velocity("stop").velocity({left: $(window).width(), opacity:0},{ duration:400, easing:"easeOutQuart"})
-    newView.velocity("stop").velocity({left:0, opacity:1},{delay:200, duration:400, easing:"easeOutQuart"})
+    currentViewId.velocity("stop").velocity({left: $(window).width(), opacity:0},{ duration:400, easing:"easeOutQuart"})
+    requestedViewId.velocity("stop").velocity({left:0, opacity:1},{delay:200, duration:400, easing:"easeOutQuart"})
     
-    // continue game if started
-    if (core.game.isPlaying() == true) core.eventBus.triggerHandler("continueGame");
+    // continue game when user comes back to game view and game is started
+    if ((requestedView === "main") && (core.game.isPlaying() == true)) core.eventBus.triggerHandler("continueGame");
     
 
 };
