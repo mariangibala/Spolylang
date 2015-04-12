@@ -76,6 +76,7 @@ var bonus = {}
 bonus.init = function(){
 bonus.name = "bonus"	
 
+// store number of correct answers
 var correctAnswers = 0;
 bonus.answersToActivateBonus = null;
 
@@ -490,8 +491,7 @@ core.eventBus.on("startGame", function(){
    	core.game.start()
 	nextStep(0)
 	message.show("GO!")
-    message.show("GO2!")
-    message.show("GO3!")
+ 
 
 });
 
@@ -933,8 +933,7 @@ console.log(db.length + " words in the database")
 // ----------------------------------------------------
 // Liocal variables //
 //-----------------------------------------------------
-var languageA = "pl";
-var languageB = "en";
+
 var word;
 var interactionsActive =  false
 var container = $("#question_placeholder")
@@ -954,14 +953,14 @@ question.generate = function(){
     
     // grab correct answer
     var answers = []
-    answers.push(word[languageB])
+    answers.push(word[settings.languageB])
     
     // grab random incorrect answers
     var x = 2;
     
     while ( x > 0 ) {
    
-        var incorrectWord = db[basic.getRandomNumber(0, lastWord)][languageB]
+        var incorrectWord = db[basic.getRandomNumber(0, lastWord)][settings.languageB]
         
         if (answers.indexOf(incorrectWord) == -1) {
         
@@ -976,7 +975,7 @@ question.generate = function(){
     answers = basic.shuffle(answers)
   
 
-    var template =  '<div id="word"><p>' + word[languageA] + '</p></div>'+
+    var template =  '<div id="word"><p>' + word[settings.languageA] + '</p></div>'+
                     '<ul id="answers">'+
                     '<li>' + answers[0] + '</li>'+
                     '<li>' + answers[1] + '</li>'+
@@ -1011,7 +1010,7 @@ question.showAnswer = function() {
     
     $("ul li").each(function(index,element){
         
-       if ($(element).text() === word[languageB]) {
+       if ($(element).text() === word[settings.languageB]) {
 
              $(element).css("background","rgba(0,255,0,0.3)")
 
@@ -1034,7 +1033,7 @@ container.on("click touchend","li", function(e){
     
     $(this).css("background","rgba(0,0,0,0.3)")
 
-    if (word[languageB] === $(this).text()) {
+    if (word[settings.languageB] === $(this).text()) {
         
         
         core.eventBus.triggerHandler("correctAnswer")
@@ -1146,6 +1145,228 @@ core.eventBus.on("startGame",function(){
 }
 
 return window.score = score;		
+		
+	
+		
+})();
+
+
+
+
+
+!(function() {
+ 
+// ----------------------------------------------------
+// Selector component for options //
+//-----------------------------------------------------
+
+        
+var selector = {}
+selector.init = function(){
+
+// ----------------------------------------------------
+// Take data and render DOM //
+//-----------------------------------------------------
+
+selector.create = function(element){
+ 
+    // create reference to object
+    var el = $(element)
+    
+    // take setting name and value
+    var basket = el.attr("basket")
+    var option = el.attr("option")
+    
+    var optionValue = settings[option]
+    var optionName 
+    
+    // calculate index
+    
+    var selectedOptionIndex;
+    for (var x=0; x< settings[basket].length; x++ ) {
+    
+        
+        if (settings[basket][x].value == optionValue) {
+            
+            selectedOptionIndex = x;
+            optionName = settings[basket][x].name
+            
+            
+    
+        }
+    
+    
+    }
+    
+    
+    el.attr("selected-index", selectedOptionIndex)
+    
+   
+    var buttonLeft = '<span class="btn btnLeft fa fa-arrow-left"></span>'
+    var buttonRight = '<span class="btn btnRight fa fa-arrow-right"></span>'
+    var selectedOption = '<p class="selectedOption">' + optionName + '</p>'
+
+    var description =  el.attr("description")
+    description = '<p class="description">' + description + '</p>'
+    
+    var DOM = buttonLeft + buttonRight + selectedOption + description;
+    
+
+    el.html(DOM)
+
+
+}
+
+// ----------------------------------------------------
+// Attach navigation events //
+//-----------------------------------------------------
+
+$(".selector").on("click touchend", ".btnLeft", function(e){
+
+    
+    e.preventDefault()
+    
+    var el = $(this).parent()
+    
+    var optionContainer = el.find(".selectedOption")
+    var optionName = el.attr("option")
+    var basket = el.attr("basket")
+    
+    
+    var optionIndex = parseInt(el.attr("selected-index"))
+    
+    var nextIndex = optionIndex + 1
+    
+    if (nextIndex > settings[basket].length -1) nextIndex = 0;
+    
+    var newOption = settings[basket][nextIndex]
+    
+    el.attr("selected-index", nextIndex)
+    
+    optionContainer.velocity("stop").velocity({left: 100, opacity:0},{duration:400, easing:"easeOutQuart", complete:function(){
+      
+        optionContainer.text(newOption.name)
+        optionContainer.css("left", -100)
+        optionContainer.velocity({left: 0, opacity:100},{duration:400, easing:"easeOutQuart", delay:30})
+        
+        
+        }})
+        
+     
+     settings.update(optionName, newOption.value)
+    
+ 
+
+});
+
+
+$(".selector").on("click touchend", ".btnRight", function(e){
+
+    
+    e.preventDefault()
+    
+    var el = $(this).parent()
+    
+    var optionContainer = el.find(".selectedOption")
+    var optionName = el.attr("option")
+    var basket = el.attr("basket")
+    
+    
+    var optionIndex = parseInt(el.attr("selected-index"))
+    
+    var nextIndex = optionIndex - 1
+    
+    if (nextIndex < 0 ) nextIndex = settings[basket].length -1;
+    
+    var newOption = settings[basket][nextIndex]
+    
+    el.attr("selected-index", nextIndex)
+    
+    optionContainer.velocity("stop").velocity({left: -100, opacity:0},{duration:400, easing:"easeOutQuart", complete:function(){
+      
+        optionContainer.text(newOption.name)
+        optionContainer.css("left", 100)
+        optionContainer.velocity({left: 0, opacity:100},{duration:400, easing:"easeOutQuart", delay:30})
+        
+        
+        }})
+        
+     
+     settings.update(optionName, newOption.value)
+    
+ 
+
+});
+
+
+
+
+// ----------------------------------------------------
+// Take all components and render //
+//-----------------------------------------------------
+
+
+$(".selector").each(function(index, element){
+
+  
+    selector.create(element)
+
+
+})
+
+
+
+}
+
+
+return window.selector = selector;		
+		
+	
+		
+})();
+
+
+
+
+
+!(function() {
+ 
+// ----------------------------------------------------
+// Settings module //
+//-----------------------------------------------------
+
+        
+var settings = {}
+settings.init = function(){
+
+
+settings.languageA = "en"
+settings.languageB = "pl"
+
+settings.languages = [
+
+    {
+        name: "English",
+        value: "en"
+    },
+    {
+        name: "Polish",
+        value: "pl"
+    }
+
+];
+
+
+settings.update = function(setting, value){
+
+    settings[setting] = value
+
+};
+
+
+}
+
+return window.settings = settings;		
 		
 	
 		
@@ -1454,6 +1675,8 @@ return window.views = views;
 //-----------------------------------------------------
 
 basic.init()
+settings.init()
+selector.init()
 db.init()
 core.init()
 message.init()

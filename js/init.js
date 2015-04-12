@@ -3,6 +3,8 @@
 //-----------------------------------------------------
 
 basic.init()
+settings.init()
+selector.init()
 db.init()
 core.init()
 message.init()

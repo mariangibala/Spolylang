@@ -14,8 +14,7 @@ console.log(db.length + " words in the database")
 // ----------------------------------------------------
 // Liocal variables //
 //-----------------------------------------------------
-var languageA = "pl";
-var languageB = "en";
+
 var word;
 var interactionsActive =  false
 var container = $("#question_placeholder")
@@ -35,14 +34,14 @@ question.generate = function(){
     
     // grab correct answer
     var answers = []
-    answers.push(word[languageB])
+    answers.push(word[settings.languageB])
     
     // grab random incorrect answers
     var x = 2;
     
     while ( x > 0 ) {
    
-        var incorrectWord = db[basic.getRandomNumber(0, lastWord)][languageB]
+        var incorrectWord = db[basic.getRandomNumber(0, lastWord)][settings.languageB]
         
         if (answers.indexOf(incorrectWord) == -1) {
         
@@ -57,7 +56,7 @@ question.generate = function(){
     answers = basic.shuffle(answers)
   
 
-    var template =  '<div id="word"><p>' + word[languageA] + '</p></div>'+
+    var template =  '<div id="word"><p>' + word[settings.languageA] + '</p></div>'+
                     '<ul id="answers">'+
                     '<li>' + answers[0] + '</li>'+
                     '<li>' + answers[1] + '</li>'+
@@ -92,7 +91,7 @@ question.showAnswer = function() {
     
     $("ul li").each(function(index,element){
         
-       if ($(element).text() === word[languageB]) {
+       if ($(element).text() === word[settings.languageB]) {
 
              $(element).css("background","rgba(0,255,0,0.3)")
 
@@ -115,7 +114,7 @@ container.on("click touchend","li", function(e){
     
     $(this).css("background","rgba(0,0,0,0.3)")
 
-    if (word[languageB] === $(this).text()) {
+    if (word[settings.languageB] === $(this).text()) {
         
         
         core.eventBus.triggerHandler("correctAnswer")

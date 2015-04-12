@@ -8,6 +8,7 @@ var bonus = {}
 bonus.init = function(){
 bonus.name = "bonus"	
 
+// store number of correct answers
 var correctAnswers = 0;
 bonus.answersToActivateBonus = null;
 

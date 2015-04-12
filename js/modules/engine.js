@@ -77,8 +77,7 @@ core.eventBus.on("startGame", function(){
    	core.game.start()
 	nextStep(0)
 	message.show("GO!")
-    message.show("GO2!")
-    message.show("GO3!")
+ 
 
 });
 
