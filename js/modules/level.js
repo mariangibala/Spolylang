@@ -1,156 +1,137 @@
-!(function() {
+!(function () {
 
 // ----------------------------------------------------
-// Levels module //
+// Levels module
 //-----------------------------------------------------
 
-var levels = {}
-levels.init = function(){
-
-
-
-// ----------------------------------------------------
-// Local variables //
-//-----------------------------------------------------
-	
-var level = 0;
-var answers = 0;
-var modules = [];
+  var levels = {};
+  levels.init = function () {
 
 
 // ----------------------------------------------------
-// Reset levels //
+// Local variables
 //-----------------------------------------------------
-	
-var reset = function(){
 
-	level = 0;
-	answers = 0;
-    
-    for (var x = 0; x < modules.length ; x++) {
-	
-		updateModuleSettings(modules[x])
-	
-	}
+    var level = 0;
+    var answers = 0;
+    var modules = [];
 
-};
+// ----------------------------------------------------
+// Reset levels
+//-----------------------------------------------------
+
+    var reset = function () {
+
+      level = 0;
+      answers = 0;
+
+      for (var x = 0; x < modules.length; x++) {
+        updateModuleSettings(modules[x])
+      }
+
+    };
 
 
 // ----------------------------------------------------
-// Helper function to get current level settings  //
+// Helper function to get current level settings
 //-----------------------------------------------------
 
-// type in the console levels.getCurrent() to see active level configuration
+    // type in the console levels.getCurrent() to see active level configuration
 
-levels.getCurrent = function(){
-	
-	for (var x = 0; x < modules.length ; x++) {
-	
-		console.log(modules[x].module.name, modules[x].config[level])
-	
-	}
-	
-};
+    levels.getCurrent = function () {
+
+      for (var x = 0; x < modules.length; x++) {
+        console.log(modules[x].module.name, modules[x].config[level])
+      }
+
+    };
 
 // ----------------------------------------------------
-// Register module  //
+// Register module
 //-----------------------------------------------------
 
-// We are pushing module settings here when initialize module
+    // We are pushing module settings here when initialize module
 
-levels.registerModule = function(module,config){
+    levels.registerModule = function (module, config) {
 
-	var obj = {module:module,config:config}
-	modules.push(obj)
-	updateModuleSettings(obj)
+      var obj = {module: module, config: config};
+      modules.push(obj);
+      updateModuleSettings(obj);
 
-};
+    };
 
 
 // ----------------------------------------------------
-// Update module settings due to level settings  //
+// Update module settings due to level settings
 //-----------------------------------------------------
 
-// Loop through all registered modules and update their settings
+    // Loop through all registered modules and update their settings
 
-var levelUp = function(){
+    var levelUp = function () {
 
-	level++
-	
-	for (var x = 0; x < modules.length ; x++) {
-	
-		updateModuleSettings(modules[x])
-	
-	}
+      level++;
 
-};
+      for (var x = 0; x < modules.length; x++) {
+        updateModuleSettings(modules[x])
+      }
+
+    };
 
 
-var updateModuleSettings = function(obj){
-	
-	for (var key in obj.config[level] ) {
-	
-		if (obj.module.hasOwnProperty(key)) {
-				
-			obj.module[key] = obj.config[level][key] 
-	
-		}
-	
-	}
+    var updateModuleSettings = function (obj) {
 
-};
+      for (var key in obj.config[level]) {
+
+        if (obj.module.hasOwnProperty(key)) {
+          obj.module[key] = obj.config[level][key]
+        }
+
+      }
+
+    };
 
 
 // ----------------------------------------------------
-// Check game status - is it time to levelup?  //
+// Check game status - is it time to levelup?
 //-----------------------------------------------------
 
-var checkStatus = function(){
+    var checkStatus = function () {
 
-	answers++
+      answers++;
 
-	if (answers == 5) {
-		
-		levelUp()
-		message.show("Level 2")	
-	
-	} else if (answers == 8) {
-	
-		levelUp()
-		message.show("Level 3")	
-		
-	}
+      if (answers === 5) {
 
-}
+        levelUp();
+        message.show("Level 2");
+
+      } else if (answers === 8) {
+
+        levelUp();
+        message.show("Level 3");
+
+      }
+
+    }
 
 // ----------------------------------------------------
-// Add event listeners //
+// Add event listeners
 //-----------------------------------------------------
 
-core.eventBus.on("correctAnswer",function(){
-	
-	checkStatus()
+    core.eventBus.on("correctAnswer", function () {
+      checkStatus();
+    });
 
-});
+    core.eventBus.on("wrongAnswer", function () {
+      checkStatus();
+    });
 
-core.eventBus.on("wrongAnswer",function(){
-	
-	checkStatus()
+    core.eventBus.on("startGame", function () {
+      reset();
+    });
 
-});
+  }
 
-core.eventBus.on("startGame",function(){
-	
-	reset()
-
-});
-
-
-
-
-}
-
-return window.levels = levels
+  return window.levels = levels
 
 
 })();

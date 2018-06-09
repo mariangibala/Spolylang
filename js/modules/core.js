@@ -1,66 +1,54 @@
-!(function() {
+!(function () {
 
 // ----------------------------------------------------
-// Core is connector between modules //
+// Core is connector between modules
 //-----------------------------------------------------
 
-var core = {}
-core.init = function(){
+  var core = {};
+  core.init = function () {
 
-core.game = {}
-
+    core.game = {};
 
 // ----------------------------------------------------
 // Game status, Did player start the game? 
 //-----------------------------------------------------
 
-var isPlaying = false;
+    var isPlaying = false;
 
-core.game.isPlaying = function(){
+    core.game.isPlaying = function () {
+      return isPlaying;
+    };
 
-	return isPlaying;
-}
+    core.game.start = function () {
+      isPlaying = true;
+    };
 
-core.game.start = function(){
-
-	isPlaying = true;
-
-}
-
-core.game.end = function(){
-
-	isPlaying = false;
-
-}
+    core.game.end = function () {
+      isPlaying = false;
+    };
 
 
-
-
-core.eventBus = $(window)
+    core.eventBus = $(window);
 
 // ----------------------------------------------------
-// Score modificators  //
+// Score modificators
 //-----------------------------------------------------
 
-core.scoreModificators = []
+    core.scoreModificators = [];
 
-core.getScoreModificators = function(){
-	
-	var value = 0
-	
-	for (var x=0; x<core.scoreModificators.length; x++) {
-		
-		 	value += core.scoreModificators[x].calc()
-	
-	}
-	
-	return value
-	
-}
+    core.getScoreModificators = function () {
 
-}
+      var value = 0;
 
-return window.core = core
+      for (var x = 0; x < core.scoreModificators.length; x++) {
+        value += core.scoreModificators[x].calc()
+      }
 
+      return value;
+    };
+
+  };
+
+  return window.core = core;
 
 })();

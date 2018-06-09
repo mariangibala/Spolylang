@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
 
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
 
 
- 
-<!--title testing-->
-<title>Spolylang</title>
+    <!--title testing-->
+    <title>Spolylang</title>
 
 
-
-<link rel="stylesheet" href="css/style.css" />
-<link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
 
 
 </head>
@@ -33,25 +32,27 @@
 <!-- Main view -->
 <!-- ****************************** -->
 <div class="view" id="main">
-  
-  	<span class="navigationIcon fa fa-bars"></span> 
 
-    <span id="messages"> <!-- messages placeholder --></span> 
-    
-    <div id="timer2"><div id="timerScale"></div></div>
-    <div id="stars"></div> 
+    <span class="navigationIcon fa fa-bars"></span>
+
+    <span id="messages"> <!-- messages placeholder --></span>
+
+    <div id="timer2">
+        <div id="timerScale"></div>
+    </div>
+    <div id="stars"></div>
     <div id="gameScore">Score:<br><span id="scoreValue"></span></div>
+
     <div id="modal">
-    
         <div id="modalContent">
-        <p>Start</p>
-        
+            <p>Start</p>
         </div>
     </div>
+
     <div id="question_placeholder">
-    
+
         <!-- question placeholder -->
-    
+
     </div>
 
 
@@ -62,17 +63,17 @@
 <!-- ****************************** -->
 <div class="view" id="menuView">
 
-   <span class="navigationIcon fa fa-times"></span> 
-   
-   <ul>
-   
-       <li link="collections">Collections</li>
-       <li link="statistics">Statistics</li>
-       <li link="options">Options</li>
-       <li link="about">About</li>
-          
-   </ul>
-    
+    <span class="navigationIcon fa fa-times"></span>
+
+    <ul>
+
+        <li link="collections">Collections</li>
+        <li link="statistics">Statistics</li>
+        <li link="options">Options</li>
+        <li link="about">About</li>
+
+    </ul>
+
 
 </div>
 
@@ -81,20 +82,21 @@
 <!-- ****************************** -->
 <div class="view" id="options">
 
-  <span class="navigationIcon fa fa-times"></span>
-  
-  <div class="viewContent">
-  
-      
-      <div class="selector" description="I know" basket="languages" option="languageA"></div>
-      <div class="selector" description="I would like to learn" basket="languages" option="languageB"></div>
-  
-  
-  </div>
-    
+    <span class="navigationIcon fa fa-times"></span>
+
+    <div class="viewContent">
+
+
+        <div class="selector" description="I know" basket="languages"
+             option="languageA"></div>
+        <div class="selector" description="I would like to learn" basket="languages"
+             option="languageB"></div>
+
+
+    </div>
+
 
 </div>
-
 
 
 <!-- ****************************** -->
@@ -102,11 +104,11 @@
 <!-- ****************************** -->
 <div class="view" id="statistics">
 
-  <span class="navigationIcon fa fa-times"></span>
-  <div class="viewContent">
-    <p>This is statistics view</p>
-  </div>  
- 
+    <span class="navigationIcon fa fa-times"></span>
+    <div class="viewContent">
+        <p>This is statistics view</p>
+    </div>
+
 </div>
 
 <!-- ****************************** -->
@@ -114,11 +116,11 @@
 <!-- ****************************** -->
 <div class="view" id="collections">
 
-  <span class="navigationIcon fa fa-times"></span>
-  <div class="viewContent">
-    <p>This is collections view</p>
-  </div>  
- 
+    <span class="navigationIcon fa fa-times"></span>
+    <div class="viewContent">
+        <p>This is collections view</p>
+    </div>
+
 </div>
 
 
@@ -127,13 +129,12 @@
 <!-- ****************************** -->
 <div class="view" id="about">
 
-  <span class="navigationIcon fa fa-times"></span>
-  <div class="viewContent">
-    <p>This is about view</p>
-  </div>  
- 
-</div>
+    <span class="navigationIcon fa fa-times"></span>
+    <div class="viewContent">
+        <p>This is about view</p>
+    </div>
 
+</div>
 
 
 <script src="app.min.js" type="text/javascript"></script>
@@ -141,76 +142,76 @@
 
 <script>
 
-var options = {
+  var options = {
 
-    particleType:"square", // square, text
-    particleText:"☆",
-   
-	emitterShape:":)",
-    emitterFontSize:150,
-	emitterType:"random", // random, point, text
-    emitterPositionX:50,
-    emitterPositionY:50,
+    particleType: "square", // square, text
+    particleText: "☆",
+
+    emitterShape: ":)",
+    emitterFontSize: 150,
+    emitterType: "random", // random, point, text
+    emitterPositionX: 50,
+    emitterPositionY: 50,
     particlesNumber: 50,
     initialSize: 2,
     randomSize: true,
-    minimumSize:2,
-    maximumSize:3,
+    minimumSize: 2,
+    maximumSize: 3,
     moveLimit: 50,
     durationMin: 150,
     durationMax: 250,
-    
-    lifeTime:false,
-    lifeTimeMin:100,
-    lifeTimeMax:100,
-    
+
+    lifeTime: false,
+    lifeTimeMin: 100,
+    lifeTimeMax: 100,
+
     // particles color
-    red:255,
-    green:0,
-    blue:255,
-    opacity:1,
+    red: 255,
+    green: 0,
+    blue: 255,
+    opacity: 1,
     randomOpacity: true,
-    particleMinimumOpacity:0.1,
-    particleMaximumOpacity:0.3,
-    
+    particleMinimumOpacity: 0.1,
+    particleMaximumOpacity: 0.3,
+
     // connections between particles
     drawConnections: true,
-    connectionRed:150,
-    connectionGreen:30,
-    connectionBlue:200,
-    connectionOpacity:0.1,
-    
+    connectionRed: 150,
+    connectionGreen: 30,
+    connectionBlue: 200,
+    connectionOpacity: 0.1,
+
     // mouse connections
-    mouseInteraction:false,
-    mouseInteractionType:"gravity", // initial, gravity
-	
-	
-    drawMouseConnections:false,
-    mouseInteractionDistance:300,
-    mouseConnectionRed:255,
-    mouseConnectionGreen:255,
-    mouseConnectionBlue:255,
-    mouseConnectionOpacity:0.1,
-    
+    mouseInteraction: false,
+    mouseInteractionType: "gravity", // initial, gravity
+
+
+    drawMouseConnections: false,
+    mouseInteractionDistance: 300,
+    mouseConnectionRed: 255,
+    mouseConnectionGreen: 255,
+    mouseConnectionBlue: 255,
+    mouseConnectionOpacity: 0.1,
+
     showStatistics: false,
-	backgroundMode:"gradient", // gradient,image
-    backgroundImage:"img/wallpaper.jpg",
-	
-    
+    backgroundMode: "gradient", // gradient,image
+    backgroundImage: "img/wallpaper.jpg",
+
+
     // Use object with property names, to easy identify values in color picker
 
-	backgroundColors: {
+    backgroundColors: {
 
-		"color1": {positionX:20,positionY:60,color:"9c1f8f"},
-		"color2": {positionX:97,positionY:70,color:"000c91"},
-		"color3": {positionX:50,positionY:50,color:"ed68ed"}
+      "color1": {positionX: 20, positionY: 60, color: "9c1f8f"},
+      "color2": {positionX: 97, positionY: 70, color: "000c91"},
+      "color3": {positionX: 50, positionY: 50, color: "ed68ed"}
 
-	}
-    
-}
+    }
+
+  }
 
 
-generateParticles("bg", options)
+  generateParticles("bg", options)
 
 
 </script>

@@ -1,44 +1,39 @@
-!(function() {
- 
+!(function () {
+
 // ----------------------------------------------------
 // Settings module //
 //-----------------------------------------------------
 
-        
-var settings = {}
-settings.init = function(){
+  var settings = {};
+  settings.init = function () {
 
 
-settings.languageA = "en"
-settings.languageB = "pl"
+    settings.languageA = "en";
+    settings.languageB = "pl";
 
-settings.languages = [
+    settings.languages = [
 
-    {
+      {
         name: "English",
         value: "en"
-    },
-    {
+      },
+      {
         name: "Polish",
         value: "pl"
-    }
+      }
 
-];
-
-
-settings.update = function(setting, value){
-
-    settings[setting] = value
-
-};
+    ];
 
 
-}
+    settings.update = function (setting, value) {
+      settings[setting] = value;
+    };
 
-return window.settings = settings;		
-		
-	
-		
+  };
+
+  return window.settings = settings;
+
+
 })();
 
 
